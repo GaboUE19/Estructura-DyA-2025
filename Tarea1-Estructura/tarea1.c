@@ -99,12 +99,17 @@ int validar_argumentos(int argc, char *modo, char *clave1, char *clave2, char *e
 
 char reemplazar(char c, char *clave1, char *clave2, int largo) {
     int i;
+    char c_lower = tolower(c); 
+
     for (i = 0; i < largo; i++) {
-        if (c == clave1[i]) {
-            return clave2[i];
-        } else if (c == clave2[i]) {
-            return clave1[i];
+        if (c_lower == tolower(clave1[i])) {
+            char reemplazo = clave2[i];
+            return isupper(c) ? toupper(reemplazo) : tolower(reemplazo);
+        } else if (c_lower == tolower(clave2[i])) {
+            char reemplazo = clave1[i];
+            return isupper(c) ? toupper(reemplazo) : tolower(reemplazo);
         }
     }
-    return c;
+
+    return c; 
 }
